@@ -6,7 +6,7 @@ root@VM-F5rSUrAn0oze:/opt/build_docker# cat Dockerfile
 FROM caddy:builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/dnspod \
+    --with github.com/caddy-dns/tencentcloud \
     --with github.com/caddy-dns/alidns
 
 FROM caddy:latest
@@ -29,6 +29,7 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
     access_key_secret {env.ALIYUN_ACCESS_KEY_SECRET}
   }
 }
+
 dnspod.example.com {
   tls {
     dns tencentcloud {
